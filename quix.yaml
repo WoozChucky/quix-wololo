@@ -21,6 +21,51 @@ deployments:
         description: This is the output topic
         required: true
         value: k8s-logs
+  - name: K8S Metrics Source
+    application: Logs Source
+    deploymentType: Service
+    version: f1eb9e5b9a8b1a02f32160ff98fa355b5ef16514
+    resources:
+      cpu: 200
+      memory: 500
+      replicas: 1
+    desiredStatus: Running
+    variables:
+      - name: output_metrics
+        inputType: OutputTopic
+        description: ''
+        required: true
+        value: k8s-metrics
+      - name: K8SEndpoint
+        inputType: Secret
+        description: ''
+        required: true
+        secretKey: K8SEndpoint
+      - name: K8SClusterCertificateAuthorityData
+        inputType: Secret
+        description: ''
+        required: true
+        secretKey: K8SClusterCertificateAuthorityData
+      - name: K8SClientCertificateData
+        inputType: Secret
+        description: ''
+        required: true
+        secretKey: K8SClientCertificateData
+      - name: K8SClientKeyData
+        inputType: Secret
+        description: ''
+        required: true
+        secretKey: K8SClientKeyData
+      - name: K8SToken
+        inputType: Secret
+        description: ''
+        required: true
+        secretKey: K8SToken
+      - name: K8SClusterName
+        inputType: FreeText
+        description: ''
+        required: true
+        value: DevCluster
 
 # This section describes the Topics of the data pipeline
 topics:
