@@ -9,7 +9,7 @@ variables:
   - name: output
     inputType: OutputTopic
     description: This is the output topic for alerts
-    defaultValue: threshold-alert-output
+    defaultValue: metrics-alerts
     required: true
   - name: parameterName
     inputType: FreeText
