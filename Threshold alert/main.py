@@ -42,6 +42,7 @@ def generate_threshold_message(d: dict):
     d[parameter_name + "_max"] = threshold_value
     d['detected_at'] = time.time_ns()
     print(d)
+    return d
 
 
 if __name__ == "__main__":
