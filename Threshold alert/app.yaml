@@ -4,6 +4,7 @@ variables:
   - name: input
     inputType: InputTopic
     description: This is the input topic for raw data
+    defaultValue: k8s-metrics
     required: true
   - name: output
     inputType: OutputTopic
