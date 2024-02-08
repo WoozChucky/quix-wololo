@@ -89,7 +89,7 @@ deployments:
   - name: Metrics Alert Detector - CPU
     application: Threshold alert
     deploymentType: Service
-    version: 8fbd3c9947fe776455604a82f0e583fb23a14d8a
+    version: a5e7e2f0adb8ef482e058d7b2a34bff437a06ebc
     resources:
       cpu: 200
       memory: 500
