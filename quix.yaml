@@ -259,6 +259,46 @@ deployments:
         description: ''
         required: false
         value: pod
+  - name: Memory Alert Detector - nodes
+    application: Threshold alert
+    deploymentType: Service
+    version: 95beecb01e126cbf4ac45b3dbac5320ae5ad2df1
+    resources:
+      cpu: 200
+      memory: 500
+      replicas: 1
+    desiredStatus: Running
+    variables:
+      - name: input
+        inputType: InputTopic
+        description: This is the input topic for raw data
+        required: true
+        value: k8s-metrics
+      - name: output
+        inputType: OutputTopic
+        description: This is the output topic for alerts
+        required: true
+        value: metrics-alerts
+      - name: parameterName
+        inputType: FreeText
+        description: This is the stream's parameter to track
+        required: true
+        value: memory
+      - name: thresholdValue
+        inputType: FreeText
+        description: This is the threshold's numerical value
+        required: true
+        value: 1000000
+      - name: bufferMilliSeconds
+        inputType: FreeText
+        description: How long to wait before waiting for threshold checking (milliseconds)
+        required: true
+        value: 1
+      - name: METRIC_TYPE
+        inputType: FreeText
+        description: ''
+        required: false
+        value: node
 
 # This section describes the Topics of the data pipeline
 topics:
