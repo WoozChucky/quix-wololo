@@ -243,7 +243,7 @@ deployments:
         inputType: FreeText
         description: ''
         required: false
-        value: ''
+        value: default
 
 # This section describes the Topics of the data pipeline
 topics:
