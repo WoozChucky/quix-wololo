@@ -51,7 +51,7 @@ deployments:
         description: ''
         required: true
         value: DevCluster
-  - name: Metrics Alert Detector
+  - name: Metrics Alert Detector - Memory
     application: Threshold alert
     deploymentType: Service
     version: 8fbd3c9947fe776455604a82f0e583fb23a14d8a
