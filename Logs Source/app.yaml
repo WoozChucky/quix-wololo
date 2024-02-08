@@ -11,6 +11,11 @@ variables:
     description: ''
     defaultValue: K8SEndpoint
     required: true
+  - name: K8SClusterCertificateAuthorityData
+    inputType: Secret
+    description: ''
+    defaultValue: K8SClusterCertificateAuthorityData
+    required: true
 dockerfile: dockerfile
 runEntryPoint: WriteHelloWorld.csproj
 defaultFile: WriteHelloWorld/Program.cs
