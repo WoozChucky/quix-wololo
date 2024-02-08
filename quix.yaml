@@ -5,7 +5,22 @@ metadata:
   version: 1.0
 
 # This section describes the Deployments of the data pipeline
-deployments: []
+deployments:
+  - name: K8s Logs Source
+    application: Logs Source
+    deploymentType: Service
+    version: 3ec84314939f47005479af7a944d181fc6d0ef5d
+    resources:
+      cpu: 200
+      memory: 500
+      replicas: 1
+    desiredStatus: Running
+    variables:
+      - name: output
+        inputType: OutputTopic
+        description: This is the output topic
+        required: true
+        value: k8s-logs
 
 # This section describes the Topics of the data pipeline
 topics:
