@@ -40,7 +40,7 @@ def generate_threshold_message(d: dict):
         d["node"] = old_message["node"]
     d[parameter_name] = old_message[parameter_name]
     d[parameter_name + "_max"] = threshold_value
-    d['detected_at'] = int(time.time())
+    d['detected_at'] = time.time_ns()
     print(d)
 
 
