@@ -9,7 +9,7 @@ class ThresholdAlert:
         self.producer_stream = producer_stream
         self.threshold_value = float(os.environ["thresholdValue"])
         self.parameter_name = os.environ["parameterName"]
-        self.original_inequality_side = None  # what side of the inequality (lower or higher) is the original value
+        self.original_inequality_side = "higher"  # what side of the inequality (lower or higher) is the original value
         self.previous_value = None
         self.previous_timestamp = None
 
