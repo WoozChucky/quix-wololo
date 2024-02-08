@@ -25,7 +25,7 @@ internal class Program
         
         var clusterName = Environment.GetEnvironmentVariable("K8SClusterName") ?? throw new InvalidOperationException("K8SClusterName is not set. Please set it in the environment variables.");
         var clusterEndpoint = Environment.GetEnvironmentVariable("K8SEndpoint") ?? throw new InvalidOperationException("K8SEndpoint is not set. Please set it in the environment variables.");
-        var clusterCA = Environment.GetEnvironmentVariable("K8SClusterCertificateAuthority") ?? throw new InvalidOperationException("K8SClusterCertificateAuthority is not set. Please set it in the environment variables.");
+        var clusterCA = Environment.GetEnvironmentVariable("K8SClusterCertificateAuthorityData") ?? throw new InvalidOperationException("K8SClusterCertificateAuthorityData is not set. Please set it in the environment variables.");
         var clientCA = Environment.GetEnvironmentVariable("K8SClientCertificateData") ?? throw new InvalidOperationException("K8SClientCertificateData is not set. Please set it in the environment variables.");
         var clientKey = Environment.GetEnvironmentVariable("K8SClientKeyData") ?? throw new InvalidOperationException("K8SClientKeyData is not set. Please set it in the environment variables.");
         var clientToken = Environment.GetEnvironmentVariable("K8SToken") ?? throw new InvalidOperationException("K8SToken is not set. Please set it in the environment variables.");
