@@ -6,51 +6,6 @@ metadata:
 
 # This section describes the Deployments of the data pipeline
 deployments:
-  - name: K8S Metrics Source
-    application: Logs Source
-    deploymentType: Service
-    version: 07915b900f2a72ef176e05170a2d02b6fec2612c
-    resources:
-      cpu: 200
-      memory: 500
-      replicas: 1
-    desiredStatus: Stopped
-    variables:
-      - name: output_metrics
-        inputType: OutputTopic
-        description: ''
-        required: true
-        value: k8s-metrics
-      - name: K8SEndpoint
-        inputType: Secret
-        description: ''
-        required: true
-        secretKey: K8SEndpoint
-      - name: K8SClusterCertificateAuthorityData
-        inputType: Secret
-        description: ''
-        required: true
-        secretKey: K8SClusterCertificateAuthorityData
-      - name: K8SClientCertificateData
-        inputType: Secret
-        description: ''
-        required: true
-        secretKey: K8SClientCertificateData
-      - name: K8SClientKeyData
-        inputType: Secret
-        description: ''
-        required: true
-        secretKey: K8SClientKeyData
-      - name: K8SToken
-        inputType: Secret
-        description: ''
-        required: true
-        secretKey: K8SToken
-      - name: K8SClusterName
-        inputType: FreeText
-        description: ''
-        required: true
-        value: DevCluster
   - name: Metrics Alert Detector - Memory
     application: Threshold alert
     deploymentType: Service
