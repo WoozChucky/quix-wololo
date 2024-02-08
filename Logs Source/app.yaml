@@ -31,6 +31,11 @@ variables:
     description: ''
     defaultValue: K8SToken
     required: true
+  - name: K8SClusterName
+    inputType: FreeText
+    description: ''
+    defaultValue: DevCluster
+    required: true
 dockerfile: dockerfile
 runEntryPoint: WriteHelloWorld.csproj
 defaultFile: WriteHelloWorld/Program.cs
