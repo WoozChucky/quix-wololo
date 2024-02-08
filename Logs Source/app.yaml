@@ -6,6 +6,11 @@ variables:
     description: This is the output topic
     defaultValue: k8s-logs
     required: true
+  - name: K8SEndpoint
+    inputType: Secret
+    description: ''
+    defaultValue: K8SEndpoint
+    required: true
 dockerfile: dockerfile
 runEntryPoint: WriteHelloWorld.csproj
 defaultFile: WriteHelloWorld/Program.cs
