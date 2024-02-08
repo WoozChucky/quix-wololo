@@ -42,8 +42,8 @@ internal class Program
             .AddDefinition("pod", "pod", "The name of the pod")
             .AddDefinition("namespace", "namespace", "The name of the namespace")
             .AddDefinition("container", "container", "The name of the container")
-            .AddDefinition("cpu", "cpu", "The CPU usage of the container")
-            .AddDefinition("memory", "memory", "The memory usage of the container");
+            .AddDefinition("cpu", "cpu", "The CPU usage of the container").SetUnit("nanocores")
+            .AddDefinition("memory", "memory", "The memory usage of the container").SetUnit("bytes");
         
         Console.WriteLine("All metrics are being streamed to QuixStreams");
         
@@ -70,7 +70,13 @@ internal class Program
                         .AddValue("container", container.Name);
                     foreach (var metricValue in container.Usage)
                     {
-                        builder.AddValue(metricValue.Key, metricValue.Value.ToDouble());
+                        var metricKey = metricValue.Key!;
+                        var metricValueKey = metricValue.Value!.ToDouble();
+                        if (metricKey == "cpu")
+                        {
+                            metricValueKey *= 1000000000;
+                        }
+                        builder.AddValue(metricKey, metricValueKey);
                     }
 
                     builder.Publish();
