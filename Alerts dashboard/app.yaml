@@ -1,0 +1,16 @@
+name: Alerts dashboard
+language: python
+variables:
+  - name: input
+    inputType: InputTopic
+    description: Name of the input topic to listen to.
+    defaultValue: metrics-alerts
+    required: false
+  - name: storage_version
+    inputType: FreeText
+    description: Version of state. Bump up this variable to reset the state.
+    defaultValue: 1.0
+    required: false
+dockerfile: dockerfile
+runEntryPoint: main.py
+defaultFile: in_memory_view.py
