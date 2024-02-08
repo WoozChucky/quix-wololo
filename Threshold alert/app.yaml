@@ -14,7 +14,7 @@ variables:
   - name: parameterName
     inputType: FreeText
     description: This is the stream's parameter to track
-    defaultValue: ParameterA
+    defaultValue: memory
     required: true
   - name: thresholdValue
     inputType: FreeText
