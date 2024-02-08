@@ -1,4 +1,4 @@
-name: Logs Source
+name: Metrics Source
 language: python
 variables:
   - name: output_metrics
