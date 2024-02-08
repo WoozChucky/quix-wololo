@@ -132,7 +132,7 @@ deployments:
     publicAccess:
       enabled: true
       urlPrefix: alertsdashboard-f6277e7
-    desiredStatus: Stopped
+    desiredStatus: Running
     variables:
       - name: input
         inputType: InputTopic
