@@ -36,11 +36,14 @@ def generate_threshold_message(d: dict):
 
     if sourceMetrics == MetricsSource.pod:
         d["container"] = old_message["container"]
+        d["pod"] = old_message["pod"]
+        d["namespace"] = old_message["namespace"]
     else:
         d["node"] = old_message["node"]
     d[parameter_name] = old_message[parameter_name]
     d[parameter_name + "_max"] = threshold_value
     d['detected_at'] = time.time_ns()
+    d['type'] = sourceMetrics.name
     print(d)
     return d
 
