@@ -1,5 +1,5 @@
 name: Logs Source
-language: csharp
+language: python
 variables:
   - name: output_metrics
     inputType: OutputTopic
@@ -37,5 +37,5 @@ variables:
     defaultValue: DevCluster
     required: true
 dockerfile: dockerfile
-runEntryPoint: WriteHelloWorld.csproj
-defaultFile: WriteHelloWorld/Program.cs
+runEntryPoint: main.py
+defaultFile: main.py
