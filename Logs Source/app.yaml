@@ -1,10 +1,10 @@
 name: Logs Source
 language: csharp
 variables:
-  - name: output
+  - name: output_metrics
     inputType: OutputTopic
-    description: This is the output topic
-    defaultValue: k8s-logs
+    description: ''
+    defaultValue: k8s-metrics
     required: true
   - name: K8SEndpoint
     inputType: Secret
