@@ -1,0 +1,11 @@
+name: Logs Source
+language: csharp
+variables:
+  - name: output
+    inputType: OutputTopic
+    description: This is the output topic for demo sine wave data
+    defaultValue: write-hello-world
+    required: true
+dockerfile: dockerfile
+runEntryPoint: WriteHelloWorld.csproj
+defaultFile: WriteHelloWorld/Program.cs
