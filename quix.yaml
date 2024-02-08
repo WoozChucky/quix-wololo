@@ -262,7 +262,7 @@ deployments:
   - name: CPU Alert Detector - pods (default)
     application: Threshold alert
     deploymentType: Service
-    version: e4b050775ca4107c716ceff79116746f01547944
+    version: 49f8ca5c3c9ff5350b27fa9888ab40a73d462f87
     resources:
       cpu: 200
       memory: 500
