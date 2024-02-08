@@ -19,7 +19,7 @@ variables:
   - name: thresholdValue
     inputType: FreeText
     description: This is the threshold's numerical value
-    defaultValue: 100
+    defaultValue: 1000000
     required: true
   - name: bufferMilliSeconds
     inputType: FreeText
