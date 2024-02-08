@@ -1,7 +1,7 @@
-name: Logs Source
+name: Metrics Source
 language: python
 variables:
-  - name: output_metrics
+  - name: output
     inputType: OutputTopic
     description: ''
     defaultValue: k8s-metrics
@@ -36,6 +36,11 @@ variables:
     description: ''
     defaultValue: DevCluster
     required: true
+  - name: K8SNamespace
+    inputType: FreeText
+    description: ''
+    defaultValue: ''
+    required: false
 dockerfile: dockerfile
 runEntryPoint: main.py
 defaultFile: main.py
