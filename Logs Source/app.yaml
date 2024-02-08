@@ -3,8 +3,8 @@ language: csharp
 variables:
   - name: output
     inputType: OutputTopic
-    description: This is the output topic for demo sine wave data
-    defaultValue: write-hello-world
+    description: This is the output topic
+    defaultValue: k8s-logs
     required: true
 dockerfile: dockerfile
 runEntryPoint: WriteHelloWorld.csproj
