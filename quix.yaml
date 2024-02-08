@@ -9,7 +9,7 @@ deployments:
   - name: K8S Metrics Source
     application: Logs Source
     deploymentType: Service
-    version: f1eb9e5b9a8b1a02f32160ff98fa355b5ef16514
+    version: 6209ac4a2a6f467277cc1180e3176c2ddeab4be3
     resources:
       cpu: 200
       memory: 500
