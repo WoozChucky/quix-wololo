@@ -121,6 +121,29 @@ deployments:
         description: How long to wait before waiting for threshold checking (milliseconds)
         required: true
         value: 1
+  - name: Alerts dashboard
+    application: Alerts dashboard
+    deploymentType: Service
+    version: f6277e726dbbe99ee6ccfc16b18abbbd2b6d4766
+    resources:
+      cpu: 200
+      memory: 500
+      replicas: 1
+    publicAccess:
+      enabled: true
+      urlPrefix: alertsdashboard-f6277e7
+    desiredStatus: Running
+    variables:
+      - name: input
+        inputType: InputTopic
+        description: Name of the input topic to listen to.
+        required: false
+        value: metrics-alerts
+      - name: storage_version
+        inputType: FreeText
+        description: Version of state. Bump up this variable to reset the state.
+        required: false
+        value: 1.0
 
 # This section describes the Topics of the data pipeline
 topics:
