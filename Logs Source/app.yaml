@@ -21,6 +21,11 @@ variables:
     description: ''
     defaultValue: K8SClientCertificateData
     required: true
+  - name: K8SClientKeyData
+    inputType: Secret
+    description: ''
+    defaultValue: K8SClientKeyData
+    required: true
 dockerfile: dockerfile
 runEntryPoint: WriteHelloWorld.csproj
 defaultFile: WriteHelloWorld/Program.cs
