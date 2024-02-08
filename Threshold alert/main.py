@@ -77,7 +77,7 @@ if __name__ == "__main__":
 
     sdf = sdf.filter(func=by_threshold, stateful=False)
 
-    sdf = sdf.update(func=generate_threshold_message, stateful=False)
+    sdf = sdf.apply(func=generate_threshold_message, stateful=False)
 
     sdf = sdf.to_topic(output_topic)
 
