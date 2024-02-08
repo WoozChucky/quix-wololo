@@ -1,7 +1,7 @@
 name: Metrics Source
 language: python
 variables:
-  - name: output_metrics
+  - name: output
     inputType: OutputTopic
     description: ''
     defaultValue: k8s-metrics
