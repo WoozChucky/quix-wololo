@@ -1,6 +1,7 @@
 import os
 import time
 import traceback
+import uuid
 from enum import Enum
 
 from quixstreams import Application, State
@@ -51,7 +52,7 @@ def generate_threshold_message(d: dict):
 if __name__ == "__main__":
     print("Listening to streams. Press CTRL-C to exit.")
 
-    app = Application.Quix("transformation-v1", auto_offset_reset="latest")
+    app = Application.Quix(str(uuid.uuid4()), auto_offset_reset="latest")
 
     # Change consumer group to a different constant if you want to run model locally.
     print("Opening input and output topics")
