@@ -258,7 +258,7 @@ deployments:
         inputType: FreeText
         description: ''
         required: false
-        value: 1
+        value: node
   - name: CPU Alert Detector - pods (default)
     application: Threshold alert
     deploymentType: Service
