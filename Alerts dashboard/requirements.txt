@@ -1,6 +1,6 @@
 quixstreams==2.2.1a0
 werkzeug==2.0.1
-dash==2.2.0
+dash==2.15.0
 dash_bootstrap_components
 requests
 eventlet==0.35.1
