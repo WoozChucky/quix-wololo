@@ -208,7 +208,7 @@ deployments:
         inputType: FreeText
         description: This is the threshold's numerical value
         required: true
-        value: 10000000
+        value: 15000000
       - name: bufferMilliSeconds
         inputType: FreeText
         description: How long to wait before waiting for threshold checking (milliseconds)
