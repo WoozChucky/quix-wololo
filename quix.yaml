@@ -338,7 +338,7 @@ deployments:
         inputType: FreeText
         description: ''
         required: false
-        value: 0
+        value: pod
 
 # This section describes the Topics of the data pipeline
 topics:
