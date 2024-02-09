@@ -182,7 +182,7 @@ deployments:
   - name: Memory Alert Detector - nodes
     application: Threshold alert
     deploymentType: Service
-    version: d50728de609819c5b1fc1fd913a0b8a58fa51036
+    version: 52eef4e19e344fd76e6304171cf155e56cda07d1
     resources:
       cpu: 200
       memory: 500
@@ -218,7 +218,7 @@ deployments:
         inputType: FreeText
         description: ''
         required: false
-        value: node
+        value: 1
   - name: CPU Alert Detector - nodes
     application: Threshold alert
     deploymentType: Service
