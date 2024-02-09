@@ -17,7 +17,7 @@ deployments:
     publicAccess:
       enabled: true
       urlPrefix: alertsdashboard-f6277e7
-    desiredStatus: Running
+    desiredStatus: Stopped
     variables:
       - name: input
         inputType: InputTopic
@@ -182,7 +182,7 @@ deployments:
   - name: Memory Alert Detector - nodes
     application: Threshold alert
     deploymentType: Service
-    version: 49f8ca5c3c9ff5350b27fa9888ab40a73d462f87
+    version: d50728de609819c5b1fc1fd913a0b8a58fa51036
     resources:
       cpu: 200
       memory: 500
@@ -208,7 +208,7 @@ deployments:
         inputType: FreeText
         description: This is the threshold's numerical value
         required: true
-        value: 1000000
+        value: 1
       - name: bufferMilliSeconds
         inputType: FreeText
         description: How long to wait before waiting for threshold checking (milliseconds)
@@ -222,7 +222,7 @@ deployments:
   - name: CPU Alert Detector - nodes
     application: Threshold alert
     deploymentType: Service
-    version: 49f8ca5c3c9ff5350b27fa9888ab40a73d462f87
+    version: d50728de609819c5b1fc1fd913a0b8a58fa51036
     resources:
       cpu: 200
       memory: 500
@@ -248,7 +248,7 @@ deployments:
         inputType: FreeText
         description: This is the threshold's numerical value
         required: true
-        value: 1000000
+        value: 1
       - name: bufferMilliSeconds
         inputType: FreeText
         description: How long to wait before waiting for threshold checking (milliseconds)
@@ -262,7 +262,7 @@ deployments:
   - name: CPU Alert Detector - pods (default)
     application: Threshold alert
     deploymentType: Service
-    version: 49f8ca5c3c9ff5350b27fa9888ab40a73d462f87
+    version: d50728de609819c5b1fc1fd913a0b8a58fa51036
     resources:
       cpu: 200
       memory: 500
@@ -288,7 +288,7 @@ deployments:
         inputType: FreeText
         description: This is the threshold's numerical value
         required: true
-        value: ' 1000000000'
+        value: ' 1'
       - name: bufferMilliSeconds
         inputType: FreeText
         description: How long to wait before waiting for threshold checking (milliseconds)
@@ -302,7 +302,7 @@ deployments:
   - name: Memory Alert Detector - pods (default)
     application: Threshold alert
     deploymentType: Service
-    version: 49f8ca5c3c9ff5350b27fa9888ab40a73d462f87
+    version: d50728de609819c5b1fc1fd913a0b8a58fa51036
     resources:
       cpu: 200
       memory: 500
@@ -328,7 +328,7 @@ deployments:
         inputType: FreeText
         description: This is the threshold's numerical value
         required: true
-        value: 1000000
+        value: 1
       - name: bufferMilliSeconds
         inputType: FreeText
         description: How long to wait before waiting for threshold checking (milliseconds)
