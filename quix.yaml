@@ -302,7 +302,7 @@ deployments:
   - name: Memory Alert Detector - pods (default)
     application: Threshold alert
     deploymentType: Service
-    version: d50728de609819c5b1fc1fd913a0b8a58fa51036
+    version: 52eef4e19e344fd76e6304171cf155e56cda07d1
     resources:
       cpu: 200
       memory: 500
@@ -338,7 +338,7 @@ deployments:
         inputType: FreeText
         description: ''
         required: false
-        value: pod
+        value: 0
 
 # This section describes the Topics of the data pipeline
 topics:
