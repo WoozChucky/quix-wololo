@@ -1,7 +1,6 @@
 import uuid
 from datetime import datetime
 
-from numpy import double
 from quixstreams import Application
 from quixstreams.platforms.quix.env import QuixEnvironment
 from quixstreams.models.serializers.quix import JSONDeserializer
@@ -58,7 +57,7 @@ def web_server():
 def get_them_good_rows(d: dict):
     print(d)
 
-    dt = datetime.fromtimestamp(double(d["detected_at"]) // 1000000000)
+    dt = datetime.fromtimestamp(float(d["detected_at"]) // 1000000000)
     detected_at = dt.strftime('%Y-%m-%d %H:%M:%S')
 
     if d["type"] == 'pod':
@@ -68,9 +67,9 @@ def get_them_good_rows(d: dict):
         if d.get("cpu", None) is not None:
             print("CPU")
             # pod cpu
-            cpu = double(d["cpu"])  # this is in milli cores, then we have to convert it to cores
+            cpu = float(d["cpu"])  # this is in milli cores, then we have to convert it to cores
             cpu = cpu / 1000000000
-            cpu_max = double(d["cpu_max"])  # this is in milli cores, then we have to convert it to cores
+            cpu_max = float(d["cpu_max"])  # this is in milli cores, then we have to convert it to cores
             cpu_max = cpu_max / 1000000000
 
             data.append({
@@ -85,9 +84,9 @@ def get_them_good_rows(d: dict):
         if d.get("memory", None) is not None:
             print("Memory")
             # pod memory
-            memory = double(d["memory"])  # this is in kilobytes, then we have to convert it to megabytes
+            memory = float(d["memory"])  # this is in kilobytes, then we have to convert it to megabytes
             memory = int(memory / 1000)
-            memory_max = double(d["memory_max"])  # this is in kilobytes, then we have to convert it to megabytes
+            memory_max = float(d["memory_max"])  # this is in kilobytes, then we have to convert it to megabytes
             memory_max = int(memory_max / 1000)
 
             data.append({
@@ -100,18 +99,35 @@ def get_them_good_rows(d: dict):
             })
 
     else:
-        cpu = double(d["cpu"])
-        cpu = cpu / 10000000
-        memory = double(d["memory"])
-        memory = int(memory / 1024)
-        data.append({
-            "Node": d["node"],
-            "CPU": f'{cpu} Cores',
-            "CPU_max": f'{double(d["cpu_max"])} Cores',
-            "Memory": f'{memory} MB',
-            "Memory_max": f'{double(d["memory_max"])} MB',
-            "Detected_At": d["detected_at"]
-        })
+        if d.get("cpu", None) is not None:
+            print("CPU")
+            # pod cpu
+            cpu = float(d["cpu"])  # this is in milli cores, then we have to convert it to cores
+            cpu = cpu / 1000000000
+            cpu_max = float(d["cpu_max"])  # this is in milli cores, then we have to convert it to cores
+            cpu_max = cpu_max / 1000000000
+
+            data.append({
+                "Node": d["node"],
+                "CPU": f'{cpu} Cores',
+                "CPU_max": f'{cpu_max} Cores',
+                "Detected_At": detected_at
+            })
+
+        if d.get("memory", None) is not None:
+            print("Memory")
+            # pod memory
+            memory = float(d["memory"])  # this is in kilobytes, then we have to convert it to megabytes
+            memory = int(memory / 1000)
+            memory_max = float(d["memory_max"])  # this is in kilobytes, then we have to convert it to megabytes
+            memory_max = int(memory_max / 1000)
+
+            data.append({
+                "Node": d["node"],
+                "Memory": f'{memory} MB',
+                "Memory_max": f'{memory_max} MB',
+                "Detected_At": detected_at
+            })
 
 
 sdf = sdf.apply(func=get_them_good_rows, stateful=False)
