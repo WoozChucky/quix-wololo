@@ -35,7 +35,7 @@ def generate_threshold_message(d: dict):
     old_message = d
     d = dict()
 
-    if sourceMetrics == MetricsSource.pod.name:
+    if sourceMetrics == MetricsSource.pod:
         d["container"] = old_message["container"]
         d["pod"] = old_message["pod"]
         d["namespace"] = old_message["namespace"]
