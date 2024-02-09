@@ -9,7 +9,7 @@ deployments:
   - name: Alerts dashboard
     application: Alerts dashboard
     deploymentType: Service
-    version: f6277e726dbbe99ee6ccfc16b18abbbd2b6d4766
+    version: c95db635ad1be9da976e94e0659bddb55a4a21e5
     resources:
       cpu: 200
       memory: 500
