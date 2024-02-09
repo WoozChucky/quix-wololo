@@ -302,7 +302,7 @@ deployments:
   - name: Memory Alert Detector - pods (default)
     application: Threshold alert
     deploymentType: Service
-    version: 5572d29a0c004a3ffe85deaf136db8cfed215bb2
+    version: 07ef6ebed36beb1c528fccf028b2dc0d1adcdcaa
     resources:
       cpu: 200
       memory: 500
