@@ -1,3 +1,21 @@
 ﻿Logs Source/.idea/*
 Logs Source/WriteHelloWorld/bin/*
 Logs Source/WriteHelloWorld/obj/*
+
+Logs Source/__pycache__/
+
+Logs Source/certificates/nunohackaton01-wololo-production/
+
+Logs Source/config
+
+Threshold alert/.idea/
+
+Threshold alert/__pycache__/
+
+Threshold alert/certificates/nunohackaton01-wololo-production/
+
+Alerts dashboard/.idea/
+
+Alerts dashboard/__pycache__/
+
+Alerts dashboard/certificates/nunohackaton01-wololo-production/

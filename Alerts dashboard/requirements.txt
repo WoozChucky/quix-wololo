@@ -3,3 +3,4 @@ werkzeug==2.3.8
 dash==2.2.0
 dash_bootstrap_components
 requests
+eventlet==0.35.1

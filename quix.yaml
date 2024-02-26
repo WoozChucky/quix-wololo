@@ -6,17 +6,40 @@ metadata:
 
 # This section describes the Deployments of the data pipeline
 deployments:
-  - name: K8S Metrics Source
-    application: Logs Source
+  - name: Alerts dashboard
+    application: Alerts dashboard
     deploymentType: Service
-    version: 07915b900f2a72ef176e05170a2d02b6fec2612c
+    version: d361246a58a3a210d580932564f78ea1406d5124
     resources:
       cpu: 200
       memory: 500
       replicas: 1
-    desiredStatus: Running
+    publicAccess:
+      enabled: true
+      urlPrefix: alertsdashboard-f6277e7
+    desiredStatus: Stopped
     variables:
-      - name: output_metrics
+      - name: input
+        inputType: InputTopic
+        description: Name of the input topic to listen to.
+        required: false
+        value: metrics-alerts
+      - name: storage_version
+        inputType: FreeText
+        description: Version of state. Bump up this variable to reset the state.
+        required: false
+        value: 1.0
+  - name: Pod Metrics Source - workspace
+    application: Logs Source
+    deploymentType: Service
+    version: 1ca018be6691873fb98126955b74543acb2781ef
+    resources:
+      cpu: 200
+      memory: 500
+      replicas: 1
+    desiredStatus: Stopped
+    variables:
+      - name: output
         inputType: OutputTopic
         description: ''
         required: true
@@ -51,15 +74,120 @@ deployments:
         description: ''
         required: true
         value: DevCluster
-  - name: Metrics Alert Detector - Memory
-    application: Threshold alert
+      - name: K8SNamespace
+        inputType: FreeText
+        description: ''
+        required: false
+        value: quixdev-nuno-dev
+  - name: Node Metrics Source
+    application: Logs Source
     deploymentType: Service
-    version: 8fbd3c9947fe776455604a82f0e583fb23a14d8a
+    version: 1ca018be6691873fb98126955b74543acb2781ef
     resources:
       cpu: 200
       memory: 500
       replicas: 1
-    desiredStatus: Running
+    desiredStatus: Stopped
+    variables:
+      - name: output
+        inputType: OutputTopic
+        description: ''
+        required: true
+        value: k8s-metrics
+      - name: K8SEndpoint
+        inputType: Secret
+        description: ''
+        required: true
+        secretKey: K8SEndpoint
+      - name: K8SClusterCertificateAuthorityData
+        inputType: Secret
+        description: ''
+        required: true
+        secretKey: K8SClusterCertificateAuthorityData
+      - name: K8SClientCertificateData
+        inputType: Secret
+        description: ''
+        required: true
+        secretKey: K8SClientCertificateData
+      - name: K8SClientKeyData
+        inputType: Secret
+        description: ''
+        required: true
+        secretKey: K8SClientKeyData
+      - name: K8SToken
+        inputType: Secret
+        description: ''
+        required: true
+        secretKey: K8SToken
+      - name: K8SClusterName
+        inputType: FreeText
+        description: ''
+        required: true
+        value: DevCluster
+      - name: K8SNamespace
+        inputType: FreeText
+        description: ''
+        required: false
+        value: ''
+  - name: Pod Metrics Source - Default
+    application: Logs Source
+    deploymentType: Service
+    version: 1ca018be6691873fb98126955b74543acb2781ef
+    resources:
+      cpu: 200
+      memory: 500
+      replicas: 2
+    desiredStatus: Stopped
+    variables:
+      - name: output
+        inputType: OutputTopic
+        description: ''
+        required: true
+        value: k8s-metrics
+      - name: K8SEndpoint
+        inputType: Secret
+        description: ''
+        required: true
+        secretKey: K8SEndpoint
+      - name: K8SClusterCertificateAuthorityData
+        inputType: Secret
+        description: ''
+        required: true
+        secretKey: K8SClusterCertificateAuthorityData
+      - name: K8SClientCertificateData
+        inputType: Secret
+        description: ''
+        required: true
+        secretKey: K8SClientCertificateData
+      - name: K8SClientKeyData
+        inputType: Secret
+        description: ''
+        required: true
+        secretKey: K8SClientKeyData
+      - name: K8SToken
+        inputType: Secret
+        description: ''
+        required: true
+        secretKey: K8SToken
+      - name: K8SClusterName
+        inputType: FreeText
+        description: ''
+        required: true
+        value: DevCluster
+      - name: K8SNamespace
+        inputType: FreeText
+        description: ''
+        required: false
+        value: default
+  - name: Memory Alert Detector - nodes
+    application: Threshold alert
+    deploymentType: Service
+    version: 5572d29a0c004a3ffe85deaf136db8cfed215bb2
+    resources:
+      cpu: 200
+      memory: 500
+      replicas: 1
+    desiredStatus: Stopped
     variables:
       - name: input
         inputType: InputTopic
@@ -80,21 +208,26 @@ deployments:
         inputType: FreeText
         description: This is the threshold's numerical value
         required: true
-        value: 1000000000
+        value: 15000000
       - name: bufferMilliSeconds
         inputType: FreeText
         description: How long to wait before waiting for threshold checking (milliseconds)
         required: true
         value: 1
-  - name: Metrics Alert Detector - CPU
+      - name: METRIC_TYPE
+        inputType: FreeText
+        description: ''
+        required: false
+        value: node
+  - name: CPU Alert Detector - nodes
     application: Threshold alert
     deploymentType: Service
-    version: 8fbd3c9947fe776455604a82f0e583fb23a14d8a
+    version: 5572d29a0c004a3ffe85deaf136db8cfed215bb2
     resources:
       cpu: 200
       memory: 500
       replicas: 1
-    desiredStatus: Running
+    desiredStatus: Stopped
     variables:
       - name: input
         inputType: InputTopic
@@ -121,16 +254,94 @@ deployments:
         description: How long to wait before waiting for threshold checking (milliseconds)
         required: true
         value: 1
+      - name: METRIC_TYPE
+        inputType: FreeText
+        description: ''
+        required: false
+        value: node
+  - name: CPU Alert Detector - pods (default)
+    application: Threshold alert
+    deploymentType: Service
+    version: 07ef6ebed36beb1c528fccf028b2dc0d1adcdcaa
+    resources:
+      cpu: 200
+      memory: 500
+      replicas: 1
+    desiredStatus: Stopped
+    variables:
+      - name: input
+        inputType: InputTopic
+        description: This is the input topic for raw data
+        required: true
+        value: k8s-metrics
+      - name: output
+        inputType: OutputTopic
+        description: This is the output topic for alerts
+        required: true
+        value: metrics-alerts
+      - name: parameterName
+        inputType: FreeText
+        description: This is the stream's parameter to track
+        required: true
+        value: cpu
+      - name: thresholdValue
+        inputType: FreeText
+        description: This is the threshold's numerical value
+        required: true
+        value: 100000000
+      - name: bufferMilliSeconds
+        inputType: FreeText
+        description: How long to wait before waiting for threshold checking (milliseconds)
+        required: true
+        value: 1
+      - name: METRIC_TYPE
+        inputType: FreeText
+        description: ''
+        required: false
+        value: pod
+  - name: Memory Alert Detector - pods (default)
+    application: Threshold alert
+    deploymentType: Service
+    version: 07ef6ebed36beb1c528fccf028b2dc0d1adcdcaa
+    resources:
+      cpu: 200
+      memory: 500
+      replicas: 1
+    desiredStatus: Stopped
+    variables:
+      - name: input
+        inputType: InputTopic
+        description: This is the input topic for raw data
+        required: true
+        value: k8s-metrics
+      - name: output
+        inputType: OutputTopic
+        description: This is the output topic for alerts
+        required: true
+        value: metrics-alerts
+      - name: parameterName
+        inputType: FreeText
+        description: This is the stream's parameter to track
+        required: true
+        value: memory
+      - name: thresholdValue
+        inputType: FreeText
+        description: This is the threshold's numerical value
+        required: true
+        value: 500000
+      - name: bufferMilliSeconds
+        inputType: FreeText
+        description: How long to wait before waiting for threshold checking (milliseconds)
+        required: true
+        value: 1
+      - name: METRIC_TYPE
+        inputType: FreeText
+        description: ''
+        required: false
+        value: pod
 
 # This section describes the Topics of the data pipeline
 topics:
-  - name: k8s-logs
-    persisted: false
-    configuration:
-      partitions: 1
-      replicationFactor: 2
-      retentionInMinutes: 1440
-      retentionInBytes: 52428800
   - name: k8s-metrics
     persisted: false
     configuration:

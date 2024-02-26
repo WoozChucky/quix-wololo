@@ -19,13 +19,18 @@ variables:
   - name: thresholdValue
     inputType: FreeText
     description: This is the threshold's numerical value
-    defaultValue: 100
+    defaultValue: 1000000
     required: true
   - name: bufferMilliSeconds
     inputType: FreeText
     description: How long to wait before waiting for threshold checking (milliseconds)
     defaultValue: 1
     required: true
+  - name: METRIC_TYPE
+    inputType: FreeText
+    description: ''
+    defaultValue: pod
+    required: false
 dockerfile: dockerfile
 runEntryPoint: main.py
 defaultFile: threshold_function.py
